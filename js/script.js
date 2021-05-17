@@ -1,32 +1,26 @@
-let hello = 'Привет';
-console.log(hello);
-
-let num;
+let num = '0';
 let score;
-let question;
-let answer;
-let currectAnswer;
 
-let questions1 = {
-  question,
-  answer,
-  currectAnswer
+const questions1 = {
+  question: 'Кто создал и когда JS?',
+  answer: 'Брендан Ейх в 1995 году.'
+  currectAnswer: '',
 }
 
-let questions2 = {
-  question,
-  answer,
-  currectAnswer,
+const questions2 = {
+  question: 'Кто создал и когда JS?',
+  answer: 'Брендан Ейх в 1995 году.'
+  currectAnswer: '',
 }
 
-let questions3 = {
-  question,
-  answer,
-  currectAnswer,
+const questions3 = {
+  question: 'Кто создал и когда JS?',
+  answer: 'Брендан Ейх в 1995 году.'
+  currectAnswer: '',
 }
 
-let questions4 = {
-  question,
-  answer,
-  currectAnswer,
+const questions4 = {
+  question: 'Кто создал и когда JS?',
+  answer: 'Брендан Ейх в 1995 году.'
+  currectAnswer: '',
 }
