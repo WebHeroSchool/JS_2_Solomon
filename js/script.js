@@ -8,25 +8,25 @@ let answer;
 let currectAnswer;
 
 let questions1 = {
-  question: question,
-  answer: answer,
-  currectAnswer: currectAnswer
+  question,
+  answer,
+  currectAnswer
 }
 
 let questions2 = {
-  question: question,
-  answer: answer,
-  currectAnswer: currectAnswer
+  question,
+  answer,
+  currectAnswer,
 }
 
 let questions3 = {
-  question: question,
-  answer: answer,
-  currectAnswer: currectAnswer
+  question,
+  answer,
+  currectAnswer,
 }
 
 let questions4 = {
-  question: question,
-  answer: answer,
-  currectAnswer: currectAnswer
+  question,
+  answer,
+  currectAnswer,
 }
