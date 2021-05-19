@@ -1,7 +1,6 @@
 let num = '0';
 let score;
 
-
 const questions1 = {
   question: 'Кто создал и когда JS?',
   answers: {
@@ -48,9 +47,9 @@ const questions4 = {
 
 let questionBox = [questions1, questions2, questions3, questions4]; //Наполняем массив
 
-questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
-  if (item.correctAnswer === item.answers['C']) {
-    console.log(item.correctAnswer)
+questionBox.forEach((item, index)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
+  if (item.correctAnswer === 'C') {
+    console.log(item.answers['C'])
   }
 })
 
