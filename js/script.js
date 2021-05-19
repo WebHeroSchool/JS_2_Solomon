@@ -49,8 +49,33 @@ const questions4 = {
 
 questionBox.push(questions1, questions2, questions3, questions4); //Наполняем массив
 
-questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
-  if (item.correctAnswer === item.answers['C']) {
-    console.log(item.correctAnswer)
-  }
-})
+// questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
+//   if (item.correctAnswer === item.answers['C']) {
+//     console.log(item.correctAnswer)
+//   }
+// })
+
+function compare() {
+  questionBox.forEach((item)=> {            
+    switch (item.correctAnswer){
+      case item.answers['A']:
+        console.log('A. Правильно!')
+        break;
+      case item.answers['B']:
+        console.log('B. Правильно!')
+        break;
+      case item.answers['C']:
+        console.log('C. Правильно!')
+        break;
+      case item.answers['D']:
+        console.log('D. Правильно!')
+        break;
+      default:
+        console.log('Неверный ответ')
+    }
+  })
+}
+
+compare()
+
+//Написать алгоритм функции, который будет сверять ответы и выводить результат.
