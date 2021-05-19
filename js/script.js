@@ -1,6 +1,5 @@
 let num = '0';
 let score;
-let questionBox = [];
 
 
 const questions1 = {
@@ -11,7 +10,7 @@ const questions1 = {
     C: 'Брендан Ейх в 1995 году.',
     D: 'Дмитрий Козлов в 1992 году.',
   },
-  correctAnswer: 'Брендан Ейх в 1995 году.',
+  correctAnswer: 'C',
 }
 
 const questions2 = {
@@ -22,7 +21,7 @@ const questions2 = {
     C: 'Модули',
     D: 'Фреймворк.',
   },
-  correctAnswer: 'Описание способов, которыми одна компьютерная программа может взаимодействовать с другой программой.',
+  correctAnswer: 'A',
 }
 
 const questions3 = {
@@ -33,7 +32,7 @@ const questions3 = {
     C: 'Голубиные.',
     D: 'Вьюрковые.',
   },
-  correctAnswer: 'Вьюрковые.',
+  correctAnswer: 'D',
 }
 
 const questions4 = {
@@ -44,38 +43,28 @@ const questions4 = {
     C: 'Нож.',
     D: 'Чайная ложка.',
   },
-  correctAnswer: 'Нож.',
+  correctAnswer: 'C',
 }
 
-questionBox.push(questions1, questions2, questions3, questions4); //Наполняем массив
+let questionBox = [questions1, questions2, questions3, questions4]; //Наполняем массив
 
-// questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
-//   if (item.correctAnswer === item.answers['C']) {
-//     console.log(item.correctAnswer)
-//   }
-// })
+questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
+  if (item.correctAnswer === item.answers['C']) {
+    console.log(item.correctAnswer)
+  }
+})
+
+//Написать алгоритм функции, который будет сверять ответы и выводить результат.
+
+let answerBox = ['C', 'D', 'D', 'C'];
 
 function compare() {
-  questionBox.forEach((item)=> {            
-    switch (item.correctAnswer){
-      case item.answers['A']:
-        console.log('A. Правильно!')
-        break;
-      case item.answers['B']:
-        console.log('B. Правильно!')
-        break;
-      case item.answers['C']:
-        console.log('C. Правильно!')
-        break;
-      case item.answers['D']:
-        console.log('D. Правильно!')
-        break;
-      default:
-        console.log('Неверный ответ')
+  questionBox.map((item, index) => {
+    if (item.correctAnswer === answerBox[index]) {
+      console.log(answerBox[index], '- Правильный ответ');
+    } else {
+      console.log(answerBox[index], '- Неправильный ответ');
     }
   })
 }
-
 compare()
-
-//Написать алгоритм функции, который будет сверять ответы и выводить результат.
