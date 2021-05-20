@@ -1,5 +1,5 @@
 let num = '0';
-let score;
+let score = 0;
 
 const questions1 = {
   question: 'Кто создал и когда JS?',
@@ -16,7 +16,7 @@ const questions2 = {
   question: 'Что такое API?',
   answers: {
     A: 'Описание способов, которыми одна компьютерная программа может взаимодействовать с другой программой.',
-    B: 'Сервера, на которых находятся программы',
+    B: 'Сервера, на которых находятся программы.',
     C: 'Модули',
     D: 'Фреймворк.',
   },
@@ -47,23 +47,33 @@ const questions4 = {
 
 let questionBox = [questions1, questions2, questions3, questions4]; //Наполняем массив
 
-questionBox.forEach((item, index)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
+questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
   if (item.correctAnswer === 'C') {
     console.log(item.answers['C'])
   }
 })
 
-//Написать алгоритм функции, который будет сверять ответы и выводить результат.
+//алгоритм функции, который сверяет ответы и выводить результат.
 
-let answerBox = ['C', 'D', 'D', 'C'];
+let answerBox = ['C', 'C', 'D', 'C'];
 
 function compare() {
   questionBox.map((item, index) => {
     if (item.correctAnswer === answerBox[index]) {
       console.log(answerBox[index], '- Правильный ответ');
+      score++;
     } else {
       console.log(answerBox[index], '- Неправильный ответ');
     }
   })
 }
 compare()
+
+const question = document.getElementById('question');
+
+function buildQuiz(score) {
+  question.innerHTML = 'Правильных ответов - ' + score
+  question.style.color = '#000'
+}
+
+buildQuiz(score)
