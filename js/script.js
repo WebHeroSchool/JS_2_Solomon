@@ -1,4 +1,5 @@
-let num = '0';
+let num = 0;
+let numSlide = 0;
 let score = 0;
 
 const questions1 = {
@@ -45,15 +46,19 @@ const questions4 = {
   correctAnswer: 'C',
 }
 
-let questionBox = [questions1, questions2, questions3, questions4]; //Наполняем массив
+//Наполняем массив
 
-questionBox.forEach((item)=> {            // перебор массива с последующим фильтром правильных ответов варианта 'С'
+let questionBox = [questions1, questions2, questions3, questions4];
+
+// перебор массива с последующим фильтром правильных ответов варианта 'С'
+
+questionBox.forEach((item)=> {
   if (item.correctAnswer === 'C') {
     console.log(item.answers['C'])
   }
 })
 
-//алгоритм функции, который сверяет ответы и выводить результат.
+//алгоритм функции, который сверяет ответы и выводить результат в консоль.
 
 let answerBox = ['C', 'C', 'D', 'C'];
 
@@ -77,3 +82,50 @@ function buildQuiz(score) {
 }
 
 buildQuiz(score)
+
+//Урок 7
+
+const buttonPrevious = document.querySelector('.button-previous')
+const buttonNext = document.querySelector('.button-next')
+
+let showSlide = () => {
+  buttonPrevious.addEventListener('click', (event) => {
+    if (numSlide > 0) {
+      numSlide--
+      console.log(numSlide)
+    } else {
+      event.stopPropagation()
+    }
+  })
+  buttonNext.addEventListener('click', (event) => {
+    numSlide++;
+    console.log(numSlide)
+  })
+}
+
+showSlide()
+
+// const showResults = () => {
+//   const answerContainer = questionBox.querySelectorAll('.answers');
+  //
+  // let numCorrect = 0;
+  //
+  // questionBox.question.forEach((currentQuestion, questionNumber) => {
+  //   //перебираем все вопросы квиза
+  //   const answerContainer = answerContainer[questionNumber];
+  //   //берем подходящий элемент, номера будут совпадать в массиве с вопросами и ответами
+  //   const selector = `input[name=question${questionNumber}]:checked`;
+  //   //для удобства положим селектор в отдельную переменную
+  //   const userAnswer = (answerContainer.querySelector(selector) || {}).value
+  //   //узнаем ответ пользователя
+  //
+  //   if (userAnswer === currentQuestion.correctAnswer) {
+  //     numCorrect++;
+  //   }
+  //   //сравним ответ пользователя с правильным ответом и подсчитаем сумму правильных ответов
+  // });
+// }
+//
+// submitButton.addEventListener('click', () => {
+//   showResults()
+// })
