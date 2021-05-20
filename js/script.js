@@ -97,7 +97,7 @@ let showSlide = () => {
       event.stopPropagation()
     }
   })
-  buttonNext.addEventListener('click', (event) => {
+  buttonNext.addEventListener('click', () => {
     numSlide++;
     console.log(numSlide)
   })
