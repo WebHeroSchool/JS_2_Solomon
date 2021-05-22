@@ -42,7 +42,8 @@ button {
     padding: 20px;
     cursor: grabbing;
     margin-bottom: 20px;
-    margin-top: 60px;
+    margin-top: 140px;
+    z-index: 9999;
 }
 
 button:hover {
@@ -54,14 +55,14 @@ button:hover {
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 2;
+    z-index: 0;
     opacity: 0;
     transition: opacity 0.5s;
 }
 
 .active-slide {
     opacity: 2;
-    z-index: 3;
+    z-index: 9999;
 }
 
 .quiz-container {
