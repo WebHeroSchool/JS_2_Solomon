@@ -9,11 +9,16 @@
 </head>
 <body>
   <h2>Quiz Game</h2>
+  <form action="#" class="form">
+    <label>
+      <input name="name" placeholder="Имя" class="form-name" required>
+      <button type="submit">Отправить</button>
+    </label>
+  </form>
   <div class="quiz-container">
-    <div id="quiz"></div>
+    <div class="display" id="quiz"></div>
   </div>
-
-  <div class="buttons">
+  <div class="buttons display">
     <button class="button button-previous" type="button">previous</button>
     <button class="button button-next" type="button">next</button>
     <button id="submit">submit Quiz</button>

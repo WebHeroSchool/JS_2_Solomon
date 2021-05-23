@@ -194,3 +194,32 @@ const setAnswerHandlers = () => {
 
 //Вызываем его
 setAnswerHandlers()
+
+let form = document.querySelector('.form');
+let name = document.querySelector('.form-name');
+let buttons = document.querySelector('.buttons');
+
+form.addEventListener('submit', function (event)  {
+
+  let regex = /^[А-ЯЁ][а-яё]{1,10}$/;
+  name.classList.remove('error');
+
+  if(!regex.test(name.value)) {
+    event.preventDefault();
+    console.log('error');
+    name.classList.add('error');
+
+    let error = document.createElement('div');
+    error.className = 'error-block';
+    error.style.color = 'red';
+    error.innerHTML = 'С заглавной строки, русскими буквами, до 10 элементов.'
+    name.parentElement.insertBefore(error, name)
+  } else {
+    //скрываем input и показываем quiz
+    form.classList.toggle('display');
+    quizContainer.classList.toggle('display');
+    buttons.classList.toggle('display');
+  }
+
+})
+
