@@ -200,7 +200,7 @@ let name = document.querySelector('.form-name');
 let buttons = document.querySelector('.buttons');
 
 form.addEventListener('submit', function (event)  {
-
+  event.preventDefault();
   let regex = /^[А-ЯЁ][а-яё]{1,10}$/;
   name.classList.remove('error');
 
