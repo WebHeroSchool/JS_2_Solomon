@@ -102,6 +102,14 @@ function showResults() {
   resultsContainer.innerHTML = `${numCorrect} out of ${questionBox.length}`;
 }
 
+function timer() {
+  setTimeout(() => {
+    const radioButtons = quizContainer.querySelectorAll('.active-slide input');
+    //Блокируем изменения ответа, добавляя всем полям ввода атрибут disabled.
+    radioButtons.forEach(button => button.setAttribute('disabled', true))
+  }, 10000)
+}
+
 function showSlide(n) {
   //удаляем у дум узла слайд класс, который его показывает
   slides[currentSlide].classList.remove("active-slide");
@@ -115,14 +123,17 @@ function showSlide(n) {
     //то мы не показываем кнопку предыдущий слайд
     previousButton.style.display = "none";
   } else {
+    //Запускаем отсчет
+    timer()
     previousButton.style.display = "inline-block";
   }
+
 
   //Если текущий слайд равен длине массива со слайдами -1
   if (currentSlide === slides.length - 1) {
     //то перестаем отображать кнопку на след вопрос
     nextButton.style.display = "none";
-    //И отобразим кнопку Узнать результаты
+    //И отобразим кнопку  Узнать результаты
     submitButton.style.display = "inline-block";
   } else {
     //а если это не последний слайд, то мы показываем кнопку след слайд и не показываем кнопку узнать результаты
@@ -203,6 +214,8 @@ form.addEventListener('submit', function (event)  {
   event.preventDefault();
   let regex = /^[А-ЯЁ][а-яё]{1,10}$/;
   name.classList.remove('error');
+  //Запускаем отсчет
+  timer()
 
   if(!regex.test(name.value)) {
     event.preventDefault();
