@@ -48,16 +48,27 @@
 
 let api = 'https://opentdb.com/api.php?amount=10&category=27&difficulty=easy&type=multiple'
 
+let questionAPI
+let a
 async function good() {
   let response = await fetch(api);
-  let questionAPI = await response.json();
+  questionAPI = await response.json();
 
   questionAPI.results.forEach((elem, index)=>{
     elem.incorrect_answers = elem.incorrect_answers.concat(elem.correct_answer);
+    return elem
     console.log(elem, index)
   })
+  return  questionAPI = questionAPI.results
+  console.log(questionAPI)
 }
-good()
+
+questionAPI = good()
+// console.log(good())
+console.log(questionAPI)
+
+// let result = await response.json();
+// alert(result.message);
 
 
 //
