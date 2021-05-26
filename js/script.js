@@ -21,9 +21,10 @@ function buildQuiz(data) {
   const output = []
   // for each question...
   data.forEach((currentQuestion, questionNumber) => {
+    console.log(questionNumber)
     // мы хотим сохранить список вариантов ответа
     let answersBox = [];
-    // and for each available answer...
+    // и за каждый доступный ответ ...
     for (let letter in currentQuestion.incorrect_answers) {
       //кнопки радио для ответов в HTML
       answersBox.push(
@@ -34,7 +35,7 @@ function buildQuiz(data) {
          </label>`
       );
     }
-    // add this question and it's answers to the output
+    // добавьте этот вопрос, и это ответы на вывод
     output.push(
       `<div class="slide">
          <div class="question"> ${currentQuestion.question} </div>
@@ -59,7 +60,7 @@ function showResults(data) {
     const userAnswer = (answerContainer.querySelector(selector) || {}).value
     //узнаем ответ пользователя
 
-    if (userAnswer === currentQuestion.correctAnswer) {
+    if (userAnswer === currentQuestion.correct_answer) {
       numCorrect++;
     }
     //сравним ответ пользователя с правильным ответом и подсчитаем сумму правильных ответов
@@ -141,7 +142,7 @@ const checkResult = (e) => {
     //Получаем значение поля input.
     const userAnswer = tar.value;
      //Сравниваем выбранный пользователем ответ с правильным ответом
-    const isCorrect = data[questionNumber].correctAnswer === userAnswer;
+    const isCorrect = data[questionNumber].correct_answer === userAnswer;
     //Если пользователь дал правильный ответ
     if (isCorrect) {
       tar.parentNode.style.color = '#1e8a1e';
