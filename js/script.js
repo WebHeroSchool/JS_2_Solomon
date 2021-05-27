@@ -1,5 +1,12 @@
 const previousButton = document.querySelector(".button-previous");
 const nextButton = document.querySelector(".button-next");
+const quizContainer = document.getElementById("quiz");
+const resultsContainer = document.getElementById("results");
+const submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", showResults)
+previousButton.addEventListener("click", showPreviousSlide)
+nextButton.addEventListener("click", showNextSlide)
+let currentSlide = 0;
 
 let api = 'https://opentdb.com/api.php?amount=10&category=27&difficulty=easy&type=multiple'
 
@@ -7,21 +14,21 @@ fetch (api)
   .then((res) => res.json())
   .then((data)=>{
      return data.results.map((elem)=>{
-    elem.incorrect_answers = elem.incorrect_answers.concat(elem.correct_answer);
-    return elem
+       elem.incorrect_answers = elem.incorrect_answers.concat(elem.correct_answer);
+     return elem
   })
   })
-  .then((data)=>{buildQuiz(data); return data})
+  .then((data)=>{buildQuiz(data); showResults(data)})
   .then(()=>{showSlide(0)})
 
-let currentSlide = 0;
+
 
 function buildQuiz(data) {
   // нам понадобится место для хранения вывода HTML
   const output = []
   // for each question...
   data.forEach((currentQuestion, questionNumber) => {
-    console.log(questionNumber)
+    // console.log(currentQuestion ,questionNumber)
     // мы хотим сохранить список вариантов ответа
     let answersBox = [];
     // и за каждый доступный ответ ...
@@ -30,10 +37,11 @@ function buildQuiz(data) {
       answersBox.push(
         `<label>
            <input type="radio" name="question${questionNumber}" value="${letter}">
-            ${letter}:
-            ${currentQuestion.incorrect_answers[letter]}
+             ${letter}:
+             ${currentQuestion.incorrect_answers[letter]}
          </label>`
       );
+      // console.log(answersBox)
     }
     // добавьте этот вопрос, и это ответы на вывод
     output.push(
@@ -44,14 +52,16 @@ function buildQuiz(data) {
     );
   });
 //объединяем наш выходной список в одну строку HTML и помещаем ее на страницу
-  quizContainer.innerHTML = output.join("");
+  quizContainer.innerHTML = output.join("")
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function showResults(data) {
   // собираем контейнеры ответов из нашей викторины
   let answerContainers = quizContainer.querySelectorAll(".answers");
   let numCorrect = 0;
-  data.forEach((currentQuestion, questionNumber) => {
+  // console.log(data)
+  data.map((currentQuestion, questionNumber) => {
+    // console.log(currentQuestion)
     //перебираем все вопросы квиза
     const answerContainer = answerContainers[questionNumber];
     //берем подходящий элемент, номера будут совпадать в массиве с вопросами и ответами
@@ -64,14 +74,14 @@ function showResults(data) {
       numCorrect++;
     }
     //сравним ответ пользователя с правильным ответом и подсчитаем сумму правильных ответов
-  });
+  })
   // показать количество правильных ответов из общего числа
   submitButton.addEventListener('click', () => {
-   showResults()
+    checkResult()
   })
   resultsContainer.innerHTML = `${numCorrect} out of ${data.length}`;
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function timer() {
   setTimeout(() => {
     const radioButtons = quizContainer.querySelectorAll('.active-slide input');
@@ -123,16 +133,9 @@ function showPreviousSlide() {
   showSlide(currentSlide - 1);
 }
 
-const quizContainer = document.getElementById("quiz");
-const resultsContainer = document.getElementById("results");
-const submitButton = document.getElementById("submit");
-
 // on submit, show results
-submitButton.addEventListener("click", showResults)
-previousButton.addEventListener("click", showPreviousSlide)
-nextButton.addEventListener("click", showNextSlide)
-
-const checkResult = (e) => {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const checkResult = (data, e) => {
   //сохраняем в переменную tar DOM - элемент, по которому произошел клик
   const tar = e.target;
   //Проверяем, был ли совершен клик по инпут
@@ -156,14 +159,14 @@ const checkResult = (e) => {
     radioButtons.forEach(button => button.setAttribute('disabled', true))
     }
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Объявляем ф-цию, которая устанавливает обработчик  событий checkResult на все блоки с вопросами.
 const setAnswerHandlers = () => {
   Array.from(quizContainer.querySelectorAll('.slide .answers')).forEach(answer => {
     answer.addEventListener('click', checkResult);
   })
 }
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Вызываем его
 setAnswerHandlers()
 
