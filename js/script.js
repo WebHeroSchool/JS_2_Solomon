@@ -102,13 +102,7 @@ function showResults() {
   resultsContainer.innerHTML = `${numCorrect} out of ${questionBox.length}`;
 }
 
-function timer() {
-  setTimeout(() => {
-    const radioButtons = quizContainer.querySelectorAll('.active-slide input');
-    //Блокируем изменения ответа, добавляя всем полям ввода атрибут disabled.
-    radioButtons.forEach(button => button.setAttribute('disabled', true))
-  }, 10000)
-}
+
 
 function showSlide(n) {
   //удаляем у дум узла слайд класс, который его показывает
@@ -153,7 +147,7 @@ function showPreviousSlide() {
   showSlide(currentSlide - 1);
 }
 
-const quizContainer = document.getElementById("quiz");
+
 const resultsContainer = document.getElementById("results");
 const submitButton = document.getElementById("submit");
 
@@ -206,33 +200,4 @@ const setAnswerHandlers = () => {
 //Вызываем его
 setAnswerHandlers()
 
-let form = document.querySelector('.form');
-let name = document.querySelector('.form-name');
-let buttons = document.querySelector('.buttons');
-
-form.addEventListener('submit', function (event)  {
-  event.preventDefault();
-  let regex = /^[А-ЯЁ][а-яё]{1,10}$/;
-  name.classList.remove('error');
-  //Запускаем отсчет
-  timer()
-
-  if(!regex.test(name.value)) {
-    event.preventDefault();
-    console.log('error');
-    name.classList.add('error');
-
-    let error = document.createElement('div');
-    error.className = 'error-block';
-    error.style.color = 'red';
-    error.innerHTML = 'С заглавной строки, русскими буквами, до 10 элементов.'
-    name.parentElement.insertBefore(error, name)
-  } else {
-    //скрываем input и показываем quiz
-    form.classList.toggle('display');
-    quizContainer.classList.toggle('display');
-    buttons.classList.toggle('display');
-  }
-
-})
 
